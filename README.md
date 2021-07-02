@@ -19,7 +19,7 @@ cd city-bus-docker-starter
 
 ```bash
 # 安装docker和docker-compose
-bash install-docker-linux
+bash ./install-docker-linux
 ```
 
 ## linux下部署项目
@@ -27,7 +27,7 @@ bash install-docker-linux
  执行脚本, 自动生成mysql和redis随机密码
 
   ```bash
-    bash docker-compose-up-linux.sh
+    bash ./docker-compose-up-linux.sh
   ```
 
 ## Window下部署项目(docker desktop)
@@ -35,7 +35,7 @@ bash install-docker-linux
 执行脚本, 自动生成mysql和redis随机密码
 
   ```bash
-    bash docker-compose-up-window.sh
+    bash ./docker-compose-up-window.sh
   ```
 
 ## 手工部署项目
