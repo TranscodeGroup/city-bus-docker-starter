@@ -1,8 +1,24 @@
 # city-bus-docker-starter
 
-## 安装docker环境
+## 安装git(如果没有安装的话)
 
 ```bash
+yum install -y git
+```
+
+## 下载安装项目
+
+```bash
+# 下载项目, 下载之后可以自己根据实际情况调整
+git clone https://github.com/TranscodeGroup/city-bus-docker-starter.git
+# 切换到项目目录
+cd city-bus-docker-starter
+```
+
+## 安装docker环境(如果没有安装的话)
+
+```bash
+# 安装docker和docker-compose
 bash install-docker-linux
 ```
 
