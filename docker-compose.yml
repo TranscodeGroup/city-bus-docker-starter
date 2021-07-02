@@ -1,0 +1,100 @@
+version: "3"
+services:
+  # mysql
+  mysql:
+    image: transcodegroup/mysql:2021.07.01
+    container_name: mysql
+    restart: always
+    ports:
+      - 9600:3306
+    volumes:
+      - ${ROOT_PATH}/mysql/data:/var/lib/mysql
+      - ${ROOT_PATH}/mysql/logs:/var/log/mysql
+      - ${ROOT_PATH}/mysql/backup/database:/mysql/backup/database
+      - ${ROOT_PATH}/mysql/backup/log:/mysql/backup/log
+    env_file:
+      - .env
+      - my.env
+
+  # redis
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - 9700:6379
+    volumes:
+      - ${ROOT_PATH}/redis/data:/data
+      #- ${ROOT_PATH}/redis/conf:/usr/local/etc/redis
+    env_file:
+      - .env
+      - my.env
+    command: redis-server --requirepass ${REDIS_REQUIRE_PASS}
+
+  # spring-boot后端
+  gateway_web:
+    image: transcodegroup/gateway-web
+    container_name: gateway_web
+    restart: always
+    ports:
+      - 8899:8899
+    env_file:
+      - .env
+      - my.env
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
+
+  # spring-boot调度
+  gateway_dispatch:
+    image: transcodegroup/gateway-dispatch
+    container_name: gateway_dispatch
+    restart: always
+    ports:
+      - 8011:8011
+    env_file:
+      - .env
+      - my.env
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
+
+  # gateway-808网关
+  gateway_808:
+    image: 330811792/gateway-808
+    container_name: gateway_808
+    restart: always
+    ports:
+      - 9010:9010
+    env_file:
+      - .env
+      - my.env
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
+
+  # nginx前端
+  nginx:
+    image: transcodegroup/nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+      - my.env
+    links:
+      - gateway_web
+      - gateway_dispatch
+    depends_on:
+      - gateway_web
+      - gateway_dispatch
