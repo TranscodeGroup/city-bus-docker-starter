@@ -3,7 +3,10 @@
 ## 安装git(如果没有安装的话)
 
 ```bash
+# CentOS
 yum install -y git
+# Debian/Ubuntu
+apt install git
 ```
 
 ## 下载安装项目
@@ -19,7 +22,7 @@ cd city-bus-docker-starter
 
 ```bash
 # 安装docker和docker-compose
-bash ./install-docker-linux
+bash ./install-docker-linux.sh
 ```
 
 ## linux下部署项目
