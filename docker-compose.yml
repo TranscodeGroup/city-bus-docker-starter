@@ -6,7 +6,7 @@ services:
     container_name: mysql
     restart: always
     ports:
-      - 9600:3306
+      - 9060:3306
     volumes:
       - ${ROOT_PATH}/mysql/data:/var/lib/mysql
       - ${ROOT_PATH}/mysql/logs:/var/log/mysql
@@ -22,7 +22,7 @@ services:
     container_name: redis
     restart: always
     ports:
-      - 9700:6379
+      - 9070:6379
     volumes:
       - ${ROOT_PATH}/redis/data:/data
       #- ${ROOT_PATH}/redis/conf:/usr/local/etc/redis
