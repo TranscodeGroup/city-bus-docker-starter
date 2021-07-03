@@ -43,6 +43,10 @@ services:
     env_file:
       - .env
       - my.env
+    environment:
+      # 默认开启分区存储
+      - DYNAMIC_TABLE=TRUE
+      - STORAGE_ACTIVE=TRUE
     links:
       - mysql
       - redis
