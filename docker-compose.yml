@@ -80,6 +80,12 @@ services:
     restart: always
     volumes:
       - ${ROOT_PATH}/files:/data/files
+    environment:
+      # 部署设置到外网IP或者存数据库
+      - FTP_REMOTE_IP=81.71.36.80
+      - FTP_REMOTE_PORT=9021
+      - FTP_USER=ota
+      - FTP_PASS=ota123
     ports:
       - 9010:9010
     env_file:
