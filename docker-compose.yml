@@ -36,6 +36,8 @@ services:
     image: transcodegroup/gateway-web
     container_name: gateway_web
     restart: always
+    volumes:
+      - ${ROOT_PATH}/files:/data/files
     ports:
       - 8899:8899
     env_file:
@@ -53,6 +55,8 @@ services:
     image: transcodegroup/gateway-dispatch
     container_name: gateway_dispatch
     restart: always
+    volumes:
+      - ${ROOT_PATH}/files:/data/files
     ports:
       - 8011:8011
     env_file:
@@ -70,6 +74,8 @@ services:
     image: 330811792/gateway-808
     container_name: gateway_808
     restart: always
+    volumes:
+      - ${ROOT_PATH}/files:/data/files
     ports:
       - 9010:9010
     env_file:
