@@ -2,7 +2,7 @@ version: "3"
 services:
   # mysql
   mysql:
-    image: transcodegroup/mysql:2021.07.01
+    image: transcodegroup/mysql
     container_name: mysql
     restart: always
     ports:
@@ -94,7 +94,7 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - 8080:80
+      - 9080:80
     env_file:
       - .env
       - my.env
