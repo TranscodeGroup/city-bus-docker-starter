@@ -98,3 +98,22 @@ services:
     depends_on:
       - gateway_web
       - gateway_dispatch
+
+  # ftp, 内部默认端口21, 30000-30009
+  ftp:
+    image: stilliard/pure-ftpd
+    container_name: ftp
+    restart: always
+    ports:
+      - "9021:21"
+      - 9030-9039:9030-9039
+    volumes:
+      - ${ROOT_PATH}/files/ota:/home/ftpusers/ota
+    expose:
+      - 21
+      - 9030-9039
+    environment:
+      - FTP_PASSIVE_PORTS=9030:9039
+      - FTP_USER_NAME=ota
+      - FTP_USER_PASS=ota123
+      - FTP_USER_HOME=/home/ftpusers/ota
