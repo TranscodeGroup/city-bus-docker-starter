@@ -133,3 +133,19 @@ services:
       - FTP_USER_NAME=ota
       - FTP_USER_PASS=ota123
       - FTP_USER_HOME=/home/ftpusers/ota
+
+  # rabbitmq, 内部主要端口 61613
+  rabbitmq:
+    image: transcodegroup/rabbitmq:latest
+    container_name: rabbitmq
+    ports:
+      - 5671:5671
+      - 15671:15671
+      - 5672:5672
+      - 15672:15672
+      - 61613:61613
+    privileged: true
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=/bus
+      - RABBITMQ_DEFAULT_USER=bus
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
