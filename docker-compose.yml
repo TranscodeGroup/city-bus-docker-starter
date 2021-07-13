@@ -108,12 +108,12 @@ services:
     env_file:
       - .env
       - my.env
-    links:
-      - gateway_web
-      - gateway_dispatch
-    depends_on:
-      - gateway_web
-      - gateway_dispatch
+    # links:
+    #   - gateway_web
+    #   - gateway_dispatch
+    # depends_on:
+    #   - gateway_web
+    #   - gateway_dispatch
 
   # ftp, 内部默认端口21, 30000-30009
   ftp:
